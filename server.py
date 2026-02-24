@@ -1,4 +1,4 @@
-
+# ТЕСТ
 import asyncio
 
 from fastapi import FastAPI
