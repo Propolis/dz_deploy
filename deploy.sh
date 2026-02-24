@@ -1,4 +1,5 @@
 #!/bin/bash
+# тест
 
 # читаем аргументы
 for i in "$@"; do
@@ -12,14 +13,14 @@ done
 
 
 #проверяем что есть нужные утилиты
-for util in git docker nginx curl; do
+for util in git docker curl; do
   command -v $util >/dev/null || { echo "нету $util"; exit 1; }
 done
 
 # бэкап
 [ -d "app" ] && cp -r app "app_backup_$(date +%s)"
 
-# обнлвляем 
+# обнлвляем
 git pull origin main
 
 # пересобераем с новым кодом
@@ -35,4 +36,4 @@ docker-compose up -d --build || {
 sleep 5
 curl -f http://localhost:8000/health || { echo "сервис мертв"; exit 1; }
 
-echo "Готово!"
+echo "деплой завершен"
